@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/27 13:14:30 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/27 15:56:36 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,8 @@
 
 char	*get_next_line(int fd)
 {
+	static char	*stash;
+	char		*line;
+
+	
 }
