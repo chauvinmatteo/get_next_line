@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/27 15:55:32 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:08:34 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,25 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	dest[i] = '\0';
+	free((void *)s1);
 	return (dest);
 }
 
-void	*ft_memchr(const void *str, int a, size_t n)
+char	*ft_strchr(const char *str, int c)
 {
-	size_t			i;
-	unsigned char	*s;
+	int				i;
+	unsigned char	to_find;
 
 	i = 0;
-	s = (unsigned char *)str;
-	while (i < n)
+	to_find = (unsigned char)c;
+	while (str[i])
 	{
-		if (s[i] == (unsigned char)a)
-			return ((void *)&s[i]);
+		if ((unsigned char)str[i] == to_find)
+			return ((char *)&str[i]);
 		i++;
 	}
+	if (to_find == '\0')
+		return ((char *)&str[i]);
 	return (0);
 }
 
@@ -83,7 +86,7 @@ char	*ft_extract_line(char *stash)
 	j = 0;
 	while (j < i)
 	{
-		new_line[j] = stash[j];
+		new_line[j] = stash[i];
 		j++;
 	}
 	new_line[j] = '\0';
@@ -118,3 +121,20 @@ char	*ft_clean_stash(char *stash)
 	free(stash);
 	return (new_stash);
 }
+/*
+#include <stdio.h>
+
+int	main(void)
+{
+	char *stash = ft_strdup("Test\nTest");
+	char *newstash;
+	char *newline;
+
+	printf("Stash : %s\n", stash);
+	newline = ft_extract_line(stash);
+	printf("New line = %s\n", newline);
+	newstash = ft_clean_stash(stash);
+	printf("New stash = %s\n", newstash);
+	return (0);
+
+}*/
