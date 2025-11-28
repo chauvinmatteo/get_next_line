@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:35:31 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/27 16:13:03 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/28 12:08:46 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 5
+# endif
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
-void	*ft_memchr(const void *str, int a, size_t n);
+char	*ft_strchr(const char *str, int c);
 size_t	ft_strlen(const char *s);
 char	*ft_extract_line(char *stash);
 char	*ft_clean_stash(char *stash);
