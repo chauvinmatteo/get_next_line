@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/28 12:08:34 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/29 11:04:00 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	dest[i] = '\0';
-	free((void *)s1);
+	if (s1 != NULL)
+		free((void *)s1);
 	return (dest);
 }
 
@@ -44,6 +45,8 @@ char	*ft_strchr(const char *str, int c)
 	int				i;
 	unsigned char	to_find;
 
+	if (!str)
+		return (NULL);
 	i = 0;
 	to_find = (unsigned char)c;
 	while (str[i])
@@ -54,7 +57,7 @@ char	*ft_strchr(const char *str, int c)
 	}
 	if (to_find == '\0')
 		return ((char *)&str[i]);
-	return (0);
+	return (NULL);
 }
 
 size_t	ft_strlen(const char *s)
@@ -86,7 +89,7 @@ char	*ft_extract_line(char *stash)
 	j = 0;
 	while (j < i)
 	{
-		new_line[j] = stash[i];
+		new_line[j] = stash[j];
 		j++;
 	}
 	new_line[j] = '\0';
