@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/29 11:18:48 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/29 12:04:38 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ char	*get_next_line(int fd)
 {
 	int			ret;
 	static char	*stash;
+	static char	*newstash;
 	char		*line;
 	char		buffer[BUFFER_SIZE + 1];
 
@@ -34,7 +35,9 @@ char	*get_next_line(int fd)
 		else if (ret > 0)
 		{
 			buffer[ret] = '\0';
-			stash = ft_strjoin(stash, buffer);
+			newstash = ft_strjoin(stash, buffer);
+			free(stash);
+			stash = newstash;
 		}
 		else if (ret == 0)
 			break ;
@@ -46,21 +49,21 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-#include <fcntl.h>
-#include <stdio.h>
+// #include <fcntl.h>
+// #include <stdio.h>
 
-int	main(void)
-{
-	int fd = open("test.txt", O_RDONLY);
-	char *line;
+// int	main(void)
+// {
+// 	int fd = open("test.txt", O_RDONLY);
+// 	char *line;
 
-	if (fd == -1)
-		return (0);
-	while ((line = get_next_line(fd)) != NULL)
-	{
-		printf("%s\n", line);
-		free(line);
-	}
-	close(fd);
-	return (0);
-}
+// 	if (fd == -1)
+// 		return (0);
+// 	while ((line = get_next_line(fd)) != NULL)
+// 	{
+// 		printf("%s\n", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// 	return (0);
+// }
