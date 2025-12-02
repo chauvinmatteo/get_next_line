@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/29 12:04:38 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/29 13:08:41 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ char	*get_next_line(int fd)
 {
 	int			ret;
 	static char	*stash;
-	static char	*newstash;
+	char		*newstash;
 	char		*line;
-	char		buffer[BUFFER_SIZE + 1];
+	char		*buffer;
 
 	line = NULL;
 	if (fd == -1 || BUFFER_SIZE <= 0)
+		return (NULL);
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
 		return (NULL);
 	ret = 1;
 	while (!ft_strchr(stash, '\n') && ret > 0)
@@ -30,18 +33,19 @@ char	*get_next_line(int fd)
 		if (ret == -1)
 		{
 			free(stash);
+			free (buffer);
 			return (NULL);
 		}
 		else if (ret > 0)
 		{
 			buffer[ret] = '\0';
 			newstash = ft_strjoin(stash, buffer);
-			free(stash);
+			if (stash)
+				free(stash);
 			stash = newstash;
 		}
-		else if (ret == 0)
-			break ;
 	}
+	free (buffer);
 	if (!stash)
 		return (NULL);
 	line = ft_extract_line(stash);

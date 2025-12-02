@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/11/29 11:52:48 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/11/29 12:43:56 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,10 @@ char	*ft_extract_line(char *stash)
 		i++;
 	new_line = malloc(sizeof(char) * (i + 1));
 	if (!new_line)
+	{
+		free(stash);
 		return (NULL);
+	}
 	j = 0;
 	while (j < i)
 	{
