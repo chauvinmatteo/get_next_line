@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:35:31 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 12:59:12 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:15:10 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 char	*get_next_line(int fd);
 char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strchr(const char *str, int c);
+char	*ft_strchr(const char *stash);
 size_t	ft_strlen(const char *s);
 char	*ft_extract_line(char *stash);
 char	*ft_clean_stash(char *stash);

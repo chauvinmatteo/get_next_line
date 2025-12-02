@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 14:16:09 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/02 15:15:24 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,23 +40,19 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (d);
 }
 
-char	*ft_strchr(const char *str, int c)
+char	*ft_strchr(const char *stash)
 {
-	int				i;
-	unsigned char	to_find;
+	int	i;
 
-	if (!str)
+	if (!stash)
 		return (NULL);
 	i = 0;
-	to_find = (unsigned char)c;
-	while (str[i])
+	while (stash[i])
 	{
-		if ((unsigned char)str[i] == to_find)
-			return ((char *)&str[i]);
+		if (stash[i] == '\n')
+			return ((char *)&stash[i]);
 		i++;
 	}
-	if (to_find == '\0')
-		return ((char *)&str[i]);
 	return (NULL);
 }
 
