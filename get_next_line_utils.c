@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 15:15:24 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/02 17:56:18 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,15 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (d);
 }
 
+char	*ft_strjoin_free(char *s1, char *s2)
+{
+	char	*res;
+
+	res = ft_strjoin(s1, s2);
+	free(s1);
+	return (res);
+}
+
 char	*ft_strchr(const char *stash)
 {
 	int	i;
@@ -66,72 +75,3 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_extract_line(char *stash)
-{
-	int		i;
-	int		j;
-	char	*new_line;
-
-	if (!stash)
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (stash[i] == '\n')
-		i++;
-	new_line = malloc(sizeof(char) * (i + 1));
-	if (!new_line)
-		return (NULL);
-	j = 0;
-	while (j < i)
-	{
-		new_line[j] = stash[j];
-		j++;
-	}
-	new_line[j] = '\0';
-	return (new_line);
-}
-
-char	*ft_clean_stash(char *stash)
-{
-	int		i;
-	int		j;
-	char	*new_stash;
-
-	if (!stash)
-		return (NULL);
-	i = 0;
-	while (stash[i] && stash[i] != '\n')
-		i++;
-	if (!stash[i])
-		return (free(stash), NULL);
-	i++;
-	if (!stash[i])
-		return (free(stash), NULL);
-	new_stash = malloc(sizeof(char) * (ft_strlen(stash + i) + 1));
-	if (!new_stash)
-		return (NULL);
-	j = 0;
-	while (stash[i])
-		new_stash[j++] = stash[i++];
-	new_stash[j] = '\0';
-	free(stash);
-	return (new_stash);
-}
-/*
-#include <stdio.h>
-
-int	main(void)
-{
-	char *stash = ft_strdup("Test\nTest");
-	char *newstash;
-	char *newline;
-
-	printf("Stash : %s\n", stash);
-	newline = ft_extract_line(stash);
-	printf("New line = %s\n", newline);
-	newstash = ft_clean_stash(stash);
-	printf("New stash = %s\n", newstash);
-	return (0);
-
-}*/
