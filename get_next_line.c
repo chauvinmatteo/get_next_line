@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:06 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/03 10:42:06 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,10 @@ static char	*ft_clean_stash(char *stash)
 	int		j;
 	char	*new_stash;
 
+	i = 0;
+	j = 0;
 	if (!stash)
 		return (NULL);
-	i = 0;
 	while (stash[i] && stash[i] != '\n')
 		i++;
 	if (!stash[i])
@@ -30,8 +31,7 @@ static char	*ft_clean_stash(char *stash)
 		return (free(stash), NULL);
 	new_stash = malloc(sizeof(char) * (ft_strlen(stash + i) + 1));
 	if (!new_stash)
-		return (NULL);
-	j = 0;
+		return (free(stash), NULL);
 	while (stash[i])
 		new_stash[j++] = stash[i++];
 	new_stash[j] = '\0';
@@ -45,7 +45,7 @@ static char	*ft_extract_line(char *stash)
 	int		j;
 	char	*new_line;
 
-	if (!stash)
+	if (!stash || !stash[0])
 		return (NULL);
 	i = 0;
 	while (stash[i] && stash[i] != '\n')
@@ -65,6 +65,17 @@ static char	*ft_extract_line(char *stash)
 	return (new_line);
 }
 
+static char	*ft_free(char *buffer, char **stash)
+{
+	free(buffer);
+	if (*stash)
+	{
+		free(*stash);
+		*stash = NULL;
+	}
+	return (NULL);
+}
+
 static char	*read_and_update_stash(int fd, char *stash)
 {
 	char	*buffer;
@@ -72,17 +83,13 @@ static char	*read_and_update_stash(int fd, char *stash)
 
 	buffer = malloc(BUFFER_SIZE + 1);
 	if (!buffer)
-		return (NULL);
+		return (ft_free(buffer, &stash));
 	ret = 1;
-	while (!ft_strchr(stash) && ret > 0)
+	while (ret > 0 && !ft_strchr(stash))
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
-		{
-			free(buffer);
-			free(stash);
-			return (NULL);
-		}
+			return(ft_free(buffer, &stash));
 		if (ret > 0)
 		{
 			buffer[ret] = '\0';
@@ -99,11 +106,13 @@ char	*get_next_line(int fd)
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free(stash), NULL);
 	stash = read_and_update_stash(fd, stash);
 	if (!stash)
-		return (NULL);
+		return (ft_free(NULL, &stash));
 	line = ft_extract_line(stash);
+	if (!line)
+		return (ft_free(line, &stash));
 	stash = ft_clean_stash(stash);
 	return (line);
 }

@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 17:56:18 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/02 18:12:57 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,3 @@ size_t	ft_strlen(const char *s)
 		i++;
 	return (i);
 }
-
