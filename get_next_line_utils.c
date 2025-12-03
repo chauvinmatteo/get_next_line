@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 14:18:29 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/02 18:12:57 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/03 10:47:57 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	return (res);
 }
 
-char	*ft_strchr(const char *stash)
+char	*ft_strchr_nl(const char *stash)
 {
 	int	i;
 
