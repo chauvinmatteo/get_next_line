@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:20 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/03 11:19:30 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/03 13:01:37 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ char	*get_next_line(int fd)
 	static char	*stash[OPEN_MAX];
 	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (free(stash[fd]), NULL);
 	stash[fd] = read_and_update_stash(fd, stash[fd]);
 	if (!stash[fd])
