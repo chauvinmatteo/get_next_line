@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 11:12:20 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/03 13:01:37 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/03 16:01:37 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,3 +116,69 @@ char	*get_next_line(int fd)
 	stash[fd] = ft_clean_stash(stash[fd]);
 	return (line);
 }
+
+// #include "get_next_line_bonus.h"
+// #include <fcntl.h>
+// #include <stdio.h>
+
+// int main(void)
+// {
+//     int     fd1;
+//     int     fd2;
+//     int     fd3;
+//     char    *line1;
+//     char    *line2;
+//     char    *line3;
+
+//     fd1 = open("test1.txt", O_RDONLY);
+//     fd2 = open("test2.txt", O_RDONLY);
+//     fd3 = open("test3.txt", O_RDONLY);
+
+//     if (fd1 < 0 || fd2 < 0 || fd3 < 0)
+//     {
+//         perror("open");
+//         return (1);
+//     }
+
+//     printf("=== LECTURE ALTERNEE SUR 3 FICHIERS ===\n\n");
+
+//     while (1)
+//     {
+//         line1 = get_next_line(fd1);
+//         line2 = get_next_line(fd2);
+//         line3 = get_next_line(fd3);
+
+//         if (line1 == NULL && line2 == NULL && line3 == NULL)
+//             break;
+
+//         if (line1 == NULL)
+//             printf("fd1: (null)\n");
+//         else
+//             printf("fd1: %s", line1);
+
+//         if (line2 == NULL)
+//             printf("fd2: (null)\n");
+//         else
+//             printf("fd2: %s", line2);
+
+//         if (line3 == NULL)
+//             printf("fd3: (null)\n");
+//         else
+//             printf("fd3: %s", line3);
+
+//         printf("------------------------\n");
+
+//         if (line1 != NULL)
+//             free(line1);
+//         if (line2 != NULL)
+//             free(line2);
+//         if (line3 != NULL)
+//             free(line3);
+//     }
+
+//     close(fd1);
+//     close(fd2);
+//     close(fd3);
+
+//     return (0);
+// }
