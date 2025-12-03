@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/03 10:42:06 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/03 10:43:21 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ static char	*read_and_update_stash(int fd, char *stash)
 	{
 		ret = read(fd, buffer, BUFFER_SIZE);
 		if (ret == -1)
-			return(ft_free(buffer, &stash));
+			return (ft_free(buffer, &stash));
 		if (ret > 0)
 		{
 			buffer[ret] = '\0';
