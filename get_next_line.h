@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:35:31 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/04 17:02:25 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/06 09:45:07 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 8
 # endif
 
 char	*get_next_line(int fd);

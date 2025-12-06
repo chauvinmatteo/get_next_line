@@ -6,7 +6,7 @@
 /*   By: mchauvin <mchauvin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 13:36:15 by mchauvin          #+#    #+#             */
-/*   Updated: 2025/12/04 17:23:05 by mchauvin         ###   ########.fr       */
+/*   Updated: 2025/12/06 11:20:41 by mchauvin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*ft_clean_stash(char *stash)
 	if (!stash[i])
 		return (free(stash), NULL);
 	i++;
-	if (!stash[i])
+	if (stash[i] == '\0')
 		return (free(stash), NULL);
 	new_stash = malloc(sizeof(char) * (ft_strlen(stash + i) + 1));
 	if (!new_stash)
@@ -116,22 +116,3 @@ char	*get_next_line(int fd)
 	stash = ft_clean_stash(stash);
 	return (line);
 }
-
-// #include <fcntl.h>
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	int fd = open("test1.txt", O_RDONLY);
-// 	char *line;
-
-// 	if (fd == -1)
-// 		return (0);
-// 	if ((line = get_next_line(fd)) != NULL)
-// 	{
-// 		printf("%s\n", line);
-// 		free(line);
-// 	}
-// 	close(fd);
-// 	return (0);
-// }
